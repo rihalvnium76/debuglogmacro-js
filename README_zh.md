@@ -1,6 +1,6 @@
 # Debug Log Macro for JavaScript/TypeScript
 
-一个针对Minifier优化的采用特（xie）殊（dao）写法以压缩出更短代码方便到处临时部署、移除的用于模拟堆栈跟踪异步操作的封装了console.log的轻型JS/TS Debug Logger。
+一个针对Minifier优化的采用特（xie）殊（dao）写法以压缩出更短代码方便到处临时部署的封装了console.log的轻型JS/TS Debug Logger。
 
 ## 基本使用
 

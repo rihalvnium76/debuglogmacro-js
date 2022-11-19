@@ -2,7 +2,7 @@
 
 [中文版](./README_zh.md)
 
-A lightweight JS/TS Debug Logger optimized for Minifier, using a special code writing method to compress shorter codes for temporary deployment and removal everywhere, used to simulate stacks to track asynchronous operations, and encapsulated console.log.
+A lightweight JS/TS Debug Logger that encapsulates console.log and uses a special code writing method optimized for Minifier to compress shorter codes for temporary deployment everywhere.
 
 ## Basic Usage
 
