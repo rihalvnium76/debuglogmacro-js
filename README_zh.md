@@ -1,33 +1,31 @@
 # Debug Log Macro for JavaScript/TypeScript
 
-[中文版](./README_zh.md)
+一个针对Minifier优化的采用特（xie）殊（dao）写法以压缩出更短代码方便到处临时部署、移除的用于模拟堆栈跟踪异步操作的封装了console.log的轻型JS/TS Debug Logger。
 
-A lightweight JS/TS Debug Logger optimized for Minifier, using a special code writing method to compress shorter codes for temporary deployment and removal everywhere, used to simulate stacks to track asynchronous operations, and encapsulated console.log.
+## 基本使用
 
-## Basic Usage
-
-1. Copy the `LogFactory` function from `debugLogMacro.min.js` or `debugLogMacro.min.ts` into your code's global scope or function scope similar to the global scope.
-2. Use the `LogFactory` function in the function or class of your own code to generate a `Log` instance, and call the Log instance itself or its member functions to log to the console.
-3. After the debugging is finished and the code tests pass, all Log functions and LogFactory functions should be removed.
+1. 将 `debugLogMacro.min.js` 或者 `debugLogMacro.min.ts` 中的 `LogFactory` 函数复制到你的代码的全局作用域或者类似全局作用域的函数作用域中。
+2. 在自己代码的函数或类中使用 `LogFactory` 函数生成 `Log` 实例，调用Log实例本身或其成员函数记录日志到控制台。
+3. 在调试结束，代码测试通过后，应移除所有的Log函数和LogFactory函数。
 
 ## API
 
-### Logger Factory
+### 日志记录器工厂函数
 
 ```ts
 function LogFactory(tag: string, parentLog?: Log): Log; 
 ```
 
-Parameters:
+参数：
 
-- `tag` : Usually the name or fully qualified name of the function to which the Log instance belongs.
-- `parentLog` (Optional) : **The Log instance of the function caller (parent function)**, used to output the function call path, especially for asynchronous operations.
+- `tag` : **标识符**，通常为Log实例所属的函数的名称或全限定名。
+- `parentLog` (可选) : **函数调用者（父函数）的Log实例**，用于输出函数调用路径，尤其是异步操作的。
 
-Return value:
+返回值：
 
-- Logger instance `Log`.
+- 日志记录器实例 `Log`
 
-### Logger
+### 日志记录器
 
 ```ts
 interface Log {
@@ -39,21 +37,21 @@ interface Log {
 ```ts
 const log: Log = LogFactory(tag, parentLog);
 ```
-Logs are output to the console using `console.log`.
+日志使用 `console.log` 输出到控制台。
 
-Instance methods:
+实例方法：
 
-- `Log()` : Output its own TAG, ID and parameter values to the log.
-- `Log.t()` : Output the TAG and ID of itself and the parent function, and its own parameters to the log.
-- `Log.s()` : Output the TAG and ID of itself and all superior functions, and its own parameters to the log.
+- `Log()` : 输出自身的TAG、ID和参数值到日志
+- `Log.t()` : 输出自身和父函数的TAG和ID，和自身的参数到日志
+- `Log.s()` : 输出自身和所有上级函数的TAG和ID，和自身的参数到日志
 
-Parameters:
+参数：
 
-- `...obj` (Optional) : Object to log.
+- `...obj` (可选) : 输出到日志的对象
 
-## Examples
+## 使用例子
 
-### Demo of all features
+### 全功能演示
 
 ```js
 function LogFactory(...){...}
@@ -64,7 +62,7 @@ A.t(2);
 A.s(3);
 ```
 
-Execution result sample:
+执行结果样例：
 
 ```log
 [A 06511152653393193] 1
@@ -72,9 +70,9 @@ Execution result sample:
 [A 06511152653393193][B 9452492786516524][C 952512427745682][D 6683961490453685] 3
 ```
 
-### Wrap logger
+### 二次封装
 
-This demonstrates how to always add the class TAG before the function TAG.
+这里演示了如何固定在函数的TAG前添加类的TAG。
 
 ```ts
 function LogFactory(...){...}
@@ -89,7 +87,7 @@ class TestController {
 }
 ```
 
-### Simulation of business scenarios
+### 模拟业务场景
 
 ```js
 import axios from 'axios';

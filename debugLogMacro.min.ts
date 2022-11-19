@@ -1,0 +1,1 @@
+function LogFactory(o:string,n:any,r=String(Math.random()).slice(2),t=(t:any)=>`[${o} ${r}]${t&&n?n.h(--t):""}`,c=(o:any)=>(...n:any)=>console.log(t(o),...n),a:any=c(0)){return a.h=t,a.t=c(1),a.s=c(-1),a}
